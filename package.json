@@ -1,0 +1,26 @@
+{
+  "name": "api-mymatch",
+  "version": "1.0.0",
+  "description": "api for mymatch project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Andres0919/api-mymatch.git"
+  },
+  "keywords": [
+    "api",
+    "portfolio"
+  ],
+  "author": "Andrés Posada",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Andres0919/api-mymatch/issues"
+  },
+  "homepage": "https://github.com/Andres0919/api-mymatch#readme",
+  "dependencies": {
+    "@hapi/hapi": "^19.1.1"
+  }
+}
