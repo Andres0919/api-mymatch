@@ -1,44 +1,40 @@
-const Hapi = require('@hapi/hapi')
-const { Client } = require('pg');
+const express = require('express')
+const { Client } = require('pg')
+const swaggerUi = require('swagger-ui-express')
+
+const app = express()
+const swaggerDoc = require('./api/swagger.json')
 
 const init = async () => {
-	const server = Hapi.Server({
-		port: process.env.PORT || 5000,
-		host:'0.0.0.0'
+  // const client = new Client({
+  //   connectionString:
+  //     process.env.DATABASE_URL,
+  //   ssl: {
+  //     rejectUnauthorized: false,
+  //   },
+  // })
+
+  // client.connect()
+
+  // client.query(
+  //   'SELECT table_schema,table_name FROM information_schema.tables;',
+  //   (err, res) => {
+  //     if (err) throw err
+  //     for (let row of res.rows) {
+  //       console.log(JSON.stringify(row))
+  //     }
+  //     client.end()
+  //   }
+  // )
+
+  app.get('/', function (req, res) {
+    res.send('Hello World')
   })
-    
-	const client = new Client({
-		connectionString: process.env.DATABASE_URL,
-		ssl: {
-			rejectUnauthorized: false
-		}
-	});
 
-	client.connect();
-
-	client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
-		if (err) throw err;
-		for (let row of res.rows) {
-			console.log(JSON.stringify(row));
-		}
-		client.end();
-	});
-
-
-	await server.start()
-
-	console.log('Server running on :>> ', server.info.uri);
-
-
-	server.route({
-		method: 'GET',
-		path: '/',
-		handler: (req, h) => {
-				return '<h1>Hello world!</h1>'
-		}
-	})
+  app.use('/api-doc', swaggerUi.serve, swaggerUi.setup(swaggerDoc))
+  app.listen(process.env.PORT || 5000)
 }
 
 module.exports = {
-    init
+  init,
 }
