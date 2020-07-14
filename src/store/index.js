@@ -7,5 +7,4 @@ module.exports = {
   sequelize,
   DataTypes,
   Model,
-  async,
 }
