@@ -20,3 +20,16 @@ User.init(
     modelName: 'User', // We need to choose the model name
   }
 )
+
+let async = async function () {
+  try {
+    await User.sync({ alter: true })
+    console.log('All models were synchronized successfully.')
+  } catch (error) {
+    console.log('[error]', error)
+  }
+}
+
+async()
+
+module.exports = User

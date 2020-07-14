@@ -1,6 +1,7 @@
 'use strict'
 const express = require('express')
 const response = require('../../../network/response')
+const User = require('./model')
 
 const router = express.Router()
 

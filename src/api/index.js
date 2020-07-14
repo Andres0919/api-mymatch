@@ -1,8 +1,6 @@
 'use strict'
 const express = require('express')
 const swaggerUi = require('swagger-ui-express')
-const { async } = require('../store')
-async()
 const user = require('./components/users/network')
 const swaggerDoc = require('./swagger.json')
 
