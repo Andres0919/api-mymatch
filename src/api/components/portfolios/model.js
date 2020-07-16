@@ -1,8 +1,8 @@
 const { sequelize, DataTypes, Model } = require('../../../store')
 
-class User extends Model {}
+class Portfolio extends Model {}
 
-User.init(
+Portfolio.init(
   {
     // Model attributes are defined here
     firstName: {
@@ -17,14 +17,14 @@ User.init(
   {
     // Other model options go here
     sequelize, // We need to pass the connection instance
-    modelName: 'User', // We need to choose the model name
+    modelName: 'Portfolio', // We need to choose the model name
   }
 )
 
 let async = async function () {
   try {
-    await User.sync({ alter: true })
-    console.log('User was synchronized successfully.')
+    await Portfolio.sync({ alter: true })
+    console.log('Portfolio was synchronized successfully.')
   } catch (error) {
     console.log('[error]', error)
   }
@@ -32,4 +32,4 @@ let async = async function () {
 
 async()
 
-module.exports = User
+module.exports = Portfolio
