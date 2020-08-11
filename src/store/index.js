@@ -1,7 +1,8 @@
+'use strict'
 const { Sequelize, DataTypes, Model } = require('sequelize')
-const config = require('../config')
+const { DB_URI } = require('../config')
 
-const sequelize = new Sequelize(config.db_uri)
+const sequelize = new Sequelize(DB_URI)
 
 module.exports = {
   sequelize,

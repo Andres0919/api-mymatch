@@ -1,3 +1,5 @@
+'use strict'
+const chalk = require('chalk')
 const { sequelize, DataTypes, Model } = require('../../../store')
 
 class User extends Model {}
@@ -24,9 +26,9 @@ User.init(
 let async = async function () {
   try {
     await User.sync({ alter: true })
-    console.log('User was synchronized successfully.')
+    console.log(chalk.green('User was synchronized successfully.'))
   } catch (error) {
-    console.log('[error]', error)
+    console.log(chalk.res('[error]', error))
   }
 }
 

@@ -1,3 +1,5 @@
+'use strict'
+const chalk = require('chalk')
 const { sequelize, DataTypes, Model } = require('../../../store')
 
 class Portfolio extends Model {}
@@ -5,11 +7,15 @@ class Portfolio extends Model {}
 Portfolio.init(
   {
     // Model attributes are defined here
-    firstName: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    lastName: {
+    author: {
+      type: DataTypes.STRING,
+      // allowNull defaults to true
+    },
+    token: {
       type: DataTypes.STRING,
       // allowNull defaults to true
     },
@@ -24,9 +30,9 @@ Portfolio.init(
 let async = async function () {
   try {
     await Portfolio.sync({ alter: true })
-    console.log('Portfolio was synchronized successfully.')
+    console.log(chalk.green('Portfolio was synchronized successfully.'))
   } catch (error) {
-    console.log('[error]', error)
+    console.log(chalk.res('[error]', error))
   }
 }
 

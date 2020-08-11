@@ -1,8 +1,6 @@
 'use strict'
 module.exports = {
-  node_env: process.env.NODE_ENV || 'dev',
-  api: {
-    port: process.env.PORT || 5000,
-  },
-  db_uri: process.env.DATABASE_URL || '',
+  NODE_ENV: process.env.NODE_ENV || 'dev',
+  API_PORT: process.env.PORT || 5000,
+  DB_URI: process.env.DATABASE_URL || '',
 }
