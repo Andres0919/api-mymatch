@@ -3,6 +3,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const helmet = require('helmet')
 const morgan = require('morgan')
+const chalk = require('chalk')
 require('dotenv').config()
 
 const { API_PORT } = require('./config')
@@ -18,7 +19,16 @@ const init = async () => {
   app.use(api)
 
   app.listen(API_PORT, () => {
-    console.log('Api listening in port', API_PORT)
+    let msgListen = `${chalk.green(
+      '/////////////////////////////////////'
+    )}\n\n`
+    msgListen = `${msgListen}    ${chalk.green(
+      'Api listening in port'
+    )}, ${chalk.yellow(API_PORT)}\n\n`
+    msgListen = `${msgListen}${chalk.green(
+      '/////////////////////////////////////'
+    )}`
+    console.log(msgListen)
   })
 }
 
