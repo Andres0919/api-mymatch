@@ -1,11 +1,20 @@
 'use strict'
 const Portfolio = require('./store')
+const { hash } = require('../../../utils/bcrypt')
 
 const portfolioController = {
   createPortfolio: ({ body }) => {
     const { name, author } = body
-    Portfolio.create({ name, author })
-    console.log('profolio created,', name, author)
+    new Promise((resolve, reject) => {
+      try {
+        const token = hash(name)
+
+        Portfolio.create({ name, author, token })
+        resolve()
+      } catch (error) {
+        reject(error)
+      }
+    })
   },
 }
 

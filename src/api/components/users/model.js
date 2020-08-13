@@ -7,11 +7,24 @@ class User extends Model {}
 User.init(
   {
     // Model attributes are defined here
+    id: {
+      allowNull: false,
+      primaryKey: true,
+      type: DataTypes.UUID,
+    },
     firstName: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     lastName: {
+      type: DataTypes.STRING,
+      // allowNull defaults to true
+    },
+    email: {
+      type: DataTypes.STRING,
+      // allowNull defaults to true
+    },
+    password: {
       type: DataTypes.STRING,
       // allowNull defaults to true
     },
