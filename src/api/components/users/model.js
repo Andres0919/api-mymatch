@@ -1,6 +1,7 @@
 'use strict'
 const chalk = require('chalk')
 const { sequelize, DataTypes, Model } = require('../../../store')
+const Portfolio = require('../portfolios/model')
 
 class User extends Model {}
 
@@ -11,6 +12,7 @@ User.init(
       allowNull: false,
       primaryKey: true,
       type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
     },
     firstName: {
       type: DataTypes.STRING,
@@ -28,6 +30,10 @@ User.init(
       type: DataTypes.STRING,
       // allowNull defaults to true
     },
+    password: {
+      type: DataTypes.STRING,
+      // allowNull defaults to true
+    },
   },
   {
     // Other model options go here
@@ -35,6 +41,12 @@ User.init(
     modelName: 'User', // We need to choose the model name
   }
 )
+
+User.belongsTo(Portfolio, {
+  foreignKey: {
+    allowNull: false,
+  },
+})
 
 let async = async function () {
   try {
