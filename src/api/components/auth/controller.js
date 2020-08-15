@@ -1,6 +1,6 @@
 'use strict'
 const { createToken } = require('../../../utils/jwt')
-const { hash } = require('../../../utils/bcrypt')
+const { compare } = require('../../../utils/bcrypt')
 const moment = require('../../../utils/moment')
 
 const User = require('../users/store')
@@ -11,6 +11,12 @@ const UserController = {
       try {
         const { email, password } = body
         const user = await User.findUserByEmailAndPortfolio(email, portfolio.id)
+        const isPasswordValid = await compare(password, user.password)
+
+        if (!isPasswordValid) {
+          reject({ message: 'Email or password is not valid' })
+        }
+
         const bodyToken = {
           user: user.id,
           expires_at: moment().add(1, 'days').unix(),

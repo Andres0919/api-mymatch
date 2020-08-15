@@ -11,6 +11,11 @@ const hash = (text) => {
   }
 }
 
+const compare = (password, token) => {
+  return bcrypt.compareSync(password, token)
+}
+
 module.exports = {
   hash,
+  compare,
 }
