@@ -1,6 +1,6 @@
-const Portfolio = require('../api/components/portfolios/store')
+const User = require('../api/components/users/store')
 
-const checkPortfolio = async (req, res, next) => {
+const checkUserAuth = async (req, res, next) => {
   const { portfolio_token } = req.headers
   console.log('req.portfolio :>> ', req.portfolio)
   if (!portfolio_token) {
@@ -22,5 +22,5 @@ const checkPortfolio = async (req, res, next) => {
 }
 
 module.exports = {
-  checkPortfolio,
+  checkUserAuth,
 }

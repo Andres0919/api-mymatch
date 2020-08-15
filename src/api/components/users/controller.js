@@ -1,25 +1,22 @@
 'use strict'
 const User = require('./store')
-const Portfolio = require('../portfolios/store')
 const { hash } = require('../../../utils/bcrypt')
 
 const UserController = {
-  getAllUsers: () => {
+  getAllUsers: ({ portfolio }) => {
     return new Promise(async (resolve, reject) => {
       try {
-        const users = await User.getAll()
-        console.log('users :>> ', users)
+        const users = await User.getAll(portfolio.id)
         resolve(users)
       } catch (error) {
         reject(error)
       }
     })
   },
-  createUser: ({ body, headers }) => {
+  createUser: ({ body, portfolio }) => {
     return new Promise(async (resolve, reject) => {
       try {
         let { firstName, lastName, email, password } = body
-        const portfolio = await Portfolio.getByToken(headers.portfolio_token)
         const PortfolioId = portfolio.id
         password = hash(password)
 

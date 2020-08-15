@@ -1,22 +1,23 @@
 'use strict'
 const express = require('express')
 const response = require('../../../network/response')
-const UserController = require('./controller')
+const { checkUserAuth } = require('../../../middlewares/auth')
+const AuthController = require('./controller')
 
 const router = express.Router()
 
-router.get('/', async (req, res) => {
+router.post('/login', async (req, res) => {
   try {
-    const users = await UserController.getAllUsers(req)
-    response.success(req, res, { users })
+    let token = await AuthController.login(req)
+    response.success(req, res, { token }, 201)
   } catch ({ message }) {
     response.error(req, res, { message })
   }
 })
 
-router.post('/', (req, res) => {
+router.get('/current_user', checkUserAuth, (req, res) => {
   try {
-    UserController.createUser(req)
+    AuthController.getCurrentUser(req)
     response.success(req, res, { message: 'User created' }, 201)
   } catch ({ message }) {
     response.error(req, res, { message })

@@ -1,8 +1,11 @@
 'use strict'
 const User = require('./model')
 
-const getAll = () => {
+const getAll = (portfolioId) => {
   return User.findAll({
+    where: {
+      PortfolioId: portfolioId,
+    },
     attributes: {
       exclude: ['password'],
     },
