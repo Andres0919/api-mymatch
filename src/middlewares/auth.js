@@ -1,23 +1,46 @@
+const { decodeToken } = require('../utils/jwt')
+const moment = require('../utils/moment')
 const User = require('../api/components/users/store')
 
 const checkUserAuth = async (req, res, next) => {
-  const { portfolio_token } = req.headers
-  console.log('req.portfolio :>> ', req.portfolio)
-  if (!portfolio_token) {
+  const { authorization } = req.headers
+  if (!authorization) {
     res.send({
       message:
-        'I need to know what portfolio you are, you send me the portfolio_token',
+        'I need to know who are you, you send me the authorization header',
     })
   }
 
-  const portfolio = await Portfolio.getByToken(portfolio_token)
-  if (!portfolio) {
+  const [Bearer, token] = authorization.split(' ')
+  if (Bearer !== 'Bearer' || !token) {
     res.send({
-      message:
-        'I need to know what portfolio you are, the portfolio_token is incorrect',
+      message: 'Token no valid',
     })
   }
-  req.portfolio = portfolio
+
+  let bodyToken
+  try {
+    bodyToken = await decodeToken(token)
+  } catch (error) {
+    res.send({
+      message: error.message,
+    })
+  }
+
+  if (!bodyToken.user || !bodyToken.expires_at) {
+    res.send({
+      message: 'Token no valid',
+    })
+  }
+
+  if (bodyToken.expires_at <= moment().unix()) {
+    return res.status(401).send({ message: 'the token has expired' })
+  }
+
+  const user = await User.findById(bodyToken.user)
+
+  req.current_user = user
+
   next()
 }
 

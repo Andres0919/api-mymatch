@@ -14,9 +14,9 @@ router.get('/', async (req, res) => {
   }
 })
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   try {
-    UserController.createUser(req)
+    await UserController.createUser(req)
     response.success(req, res, { message: 'User created' }, 201)
   } catch ({ message }) {
     response.error(req, res, { message })

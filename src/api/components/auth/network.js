@@ -9,16 +9,15 @@ const router = express.Router()
 router.post('/login', async (req, res) => {
   try {
     let token = await AuthController.login(req)
-    response.success(req, res, { token }, 201)
+    response.success(req, res, token, 201)
   } catch ({ message }) {
     response.error(req, res, { message })
   }
 })
 
-router.get('/current_user', checkUserAuth, (req, res) => {
+router.get('/current_user', checkUserAuth, async (req, res) => {
   try {
-    AuthController.getCurrentUser(req)
-    response.success(req, res, { message: 'User created' }, 201)
+    response.success(req, res, { user: req.current_user }, 201)
   } catch ({ message }) {
     response.error(req, res, { message })
   }
