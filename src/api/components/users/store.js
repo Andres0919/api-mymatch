@@ -1,7 +1,7 @@
 'use strict'
 const User = require('./model')
 
-const getAll = (portfolioId) => {
+const all = (portfolioId) => {
   return User.findAll({
     where: {
       PortfolioId: portfolioId,
@@ -37,7 +37,7 @@ const create = (user) => {
 }
 
 module.exports = {
-  getAll,
+  all,
   findById,
   findUserByEmailAndPortfolio,
   create,

@@ -14,25 +14,22 @@ User.init(
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
     },
-    firstName: {
+    title: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    lastName: {
+    slug: {
       type: DataTypes.STRING,
-      // allowNull defaults to true
     },
-    email: {
+    summary: {
       type: DataTypes.STRING,
-      // allowNull defaults to true
     },
-    password: {
-      type: DataTypes.STRING,
-      // allowNull defaults to true
+    publishedAt: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
     },
     password: {
       type: DataTypes.STRING,
-      // allowNull defaults to true
     },
   },
   {
@@ -53,7 +50,7 @@ let async = async function () {
     await User.sync({ alter: true })
     console.log(chalk.green('User was synchronized successfully.'))
   } catch (error) {
-    console.log(chalk.res('[error]', error))
+    console.log(chalk.red('[error]', error))
   }
 }
 

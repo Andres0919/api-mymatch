@@ -2,14 +2,14 @@
 const Portfolio = require('./store')
 const { hash } = require('../../../utils/bcrypt')
 
-const portfolioController = {
-  createPortfolio: ({ body }) => {
+const PortfolioController = {
+  create: ({ body }) => {
     const { name, author } = body
-    new Promise((resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
       try {
         const token = hash(name)
 
-        Portfolio.create({ name, author, token })
+        await Portfolio.create({ name, author, token })
         resolve()
       } catch (error) {
         reject(error)
@@ -18,4 +18,4 @@ const portfolioController = {
   },
 }
 
-module.exports = portfolioController
+module.exports = PortfolioController

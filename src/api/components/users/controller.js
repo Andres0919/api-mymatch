@@ -3,17 +3,17 @@ const User = require('./store')
 const { hash } = require('../../../utils/bcrypt')
 
 const UserController = {
-  getAllUsers: ({ portfolio }) => {
+  getAll: ({ portfolio }) => {
     return new Promise(async (resolve, reject) => {
       try {
-        const users = await User.getAll(portfolio.id)
+        const users = await User.all(portfolio.id)
         resolve(users)
       } catch (error) {
         reject(error)
       }
     })
   },
-  createUser: ({ body, portfolio }) => {
+  create: ({ body, portfolio }) => {
     return new Promise(async (resolve, reject) => {
       try {
         let { firstName, lastName, email, password } = body

@@ -6,12 +6,12 @@ const PortfolioController = require('./controller')
 const router = express.Router()
 
 router.get('/', (req, res) => {
-  response.success(req, res, 'Todo correcto', 200)
+  response.success(req, res, { message: 'Todo correcto' })
 })
 
-router.post('/', (req, res) => {
-  PortfolioController.createPortfolio(req)
-  return response.success(req, res, 'Todo correcto', 200)
+router.post('/', async (req, res) => {
+  await PortfolioController.create(req)
+  response.success(req, res, { message: 'Todo correcto' })
 })
 
 module.exports = router

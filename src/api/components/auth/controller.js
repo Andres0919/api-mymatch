@@ -5,7 +5,7 @@ const moment = require('../../../utils/moment')
 
 const User = require('../users/store')
 
-const UserController = {
+const AuthController = {
   login: ({ portfolio, body }) => {
     return new Promise(async (resolve, reject) => {
       try {
@@ -39,4 +39,4 @@ const UserController = {
   },
 }
 
-module.exports = UserController
+module.exports = AuthController

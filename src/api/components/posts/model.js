@@ -2,20 +2,34 @@
 const chalk = require('chalk')
 const { sequelize, DataTypes, Model } = require('../../../store')
 
-class Portfolio extends Model {}
+class Post extends Model {}
 
-Portfolio.init(
+Post.init(
   {
     // Model attributes are defined here
-    name: {
+    id: {
+      allowNull: false,
+      primaryKey: true,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+    },
+    firstName: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    author: {
+    lastName: {
       type: DataTypes.STRING,
       // allowNull defaults to true
     },
-    token: {
+    email: {
+      type: DataTypes.STRING,
+      // allowNull defaults to true
+    },
+    password: {
+      type: DataTypes.STRING,
+      // allowNull defaults to true
+    },
+    password: {
       type: DataTypes.STRING,
       // allowNull defaults to true
     },
@@ -23,14 +37,14 @@ Portfolio.init(
   {
     // Other model options go here
     sequelize, // We need to pass the connection instance
-    modelName: 'Portfolio', // We need to choose the model name
+    modelName: 'Post', // We need to choose the model name
   }
 )
 
 let async = async function () {
   try {
-    await Portfolio.sync({ alter: true })
-    console.log(chalk.green('Portfolio was synchronized successfully.'))
+    await Post.sync({ alter: true })
+    console.log(chalk.green('Post was synchronized successfully.'))
   } catch (error) {
     console.log(chalk.red('[error]', error))
   }
@@ -38,4 +52,4 @@ let async = async function () {
 
 async()
 
-module.exports = Portfolio
+module.exports = Post
