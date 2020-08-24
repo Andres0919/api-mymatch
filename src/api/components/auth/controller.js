@@ -3,14 +3,11 @@ const { createToken } = require('../../../utils/jwt')
 const { compare } = require('../../../utils/bcrypt')
 const moment = require('../../../utils/moment')
 
-const User = require('../users/store')
-
 const AuthController = {
   login: ({ portfolio, body }) => {
     return new Promise(async (resolve, reject) => {
       try {
         const { email, password } = body
-        const user = await User.findUserByEmailAndPortfolio(email, portfolio.id)
         const isPasswordValid = await compare(password, user.password)
 
         if (!isPasswordValid) {

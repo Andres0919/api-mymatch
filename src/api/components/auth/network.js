@@ -1,7 +1,7 @@
 'use strict'
 const express = require('express')
 const response = require('../../../network/response')
-const { checkUserAuth } = require('../../../middlewares/auth')
+const { isAuthenticated } = require('../../../middlewares/auth')
 const AuthController = require('./controller')
 
 const router = express.Router()
@@ -15,7 +15,7 @@ router.post('/login', async (req, res) => {
   }
 })
 
-router.get('/current_user', checkUserAuth, async (req, res) => {
+router.get('/current_user', isAuthenticated, async (req, res) => {
   try {
     response.success(req, res, { user: req.current_user }, 201)
   } catch ({ message }) {

@@ -19,16 +19,13 @@ const init = async () => {
   app.use(api)
 
   app.listen(API_PORT, () => {
-    let msgListen = `${chalk.green(
-      '/////////////////////////////////////'
-    )}\n\n`
-    msgListen = `${msgListen}    ${chalk.green(
-      'Api listening in port'
-    )}, ${chalk.yellow(API_PORT)}\n\n`
-    msgListen = `${msgListen}${chalk.green(
-      '/////////////////////////////////////'
-    )}`
-    console.log(msgListen)
+    console.log(`${chalk.green('/////////////////////////////////////')}\n\n`)
+    console.log(
+      `     ${chalk.green('Api listening in port')}, ${chalk.yellow(
+        API_PORT
+      )}\n\n`
+    )
+    console.log(`${chalk.green('/////////////////////////////////////')}`)
   })
 }
 

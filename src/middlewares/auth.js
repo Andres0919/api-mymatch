@@ -1,8 +1,7 @@
 const { decodeToken } = require('../utils/jwt')
 const moment = require('../utils/moment')
-const User = require('../api/components/users/store')
 
-const checkUserAuth = async (req, res, next) => {
+const isAuthenticated = async (req, res, next) => {
   const { authorization } = req.headers
   if (!authorization) {
     res.send({
@@ -37,13 +36,9 @@ const checkUserAuth = async (req, res, next) => {
     return res.status(401).send({ message: 'the token has expired' })
   }
 
-  const user = await User.findById(bodyToken.user)
-
-  req.current_user = user
-
   next()
 }
 
 module.exports = {
-  checkUserAuth,
+  isAuthenticated,
 }
