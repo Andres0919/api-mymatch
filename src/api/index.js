@@ -10,14 +10,9 @@ const swaggerDoc = require('./swagger.json')
 
 const app = express()
 
-app.use(checkPortfolio)
-
-app.get('/', function (req, res) {
-  res.send('Hello World')
-})
-
-app.use('/api/auth', auth)
 app.use('/api/portfolio', portfolio)
+app.use(checkPortfolio)
+app.use('/api/auth', auth)
 
 app.use('/api-doc', swaggerUi.serve, swaggerUi.setup(swaggerDoc))
 

@@ -4,12 +4,13 @@ const { hash } = require('../../../utils/bcrypt')
 
 const PortfolioController = {
   create: ({ body }) => {
-    const { name, author } = body
+    let { name, author, email, password } = body
     return new Promise(async (resolve, reject) => {
       try {
         const token = hash(name)
+        password = hash(password)
 
-        await Portfolio.create({ name, author, token })
+        await Portfolio.create({ name, author, email, password, token })
         resolve()
       } catch (error) {
         reject(error)

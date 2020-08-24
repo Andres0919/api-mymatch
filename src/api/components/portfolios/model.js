@@ -6,18 +6,35 @@ class Portfolio extends Model {}
 
 Portfolio.init(
   {
-    // Model attributes are defined here
+    id: {
+      allowNull: false,
+      primaryKey: true,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     author: {
       type: DataTypes.STRING,
-      // allowNull defaults to true
+      allowNull: false,
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     token: {
       type: DataTypes.STRING,
-      // allowNull defaults to true
+      allowNull: false,
+    },
+    isDeleted: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
     },
   },
   {
