@@ -10,16 +10,16 @@ router.post('/login', async (req, res) => {
   try {
     let token = await AuthController.login(req)
     response.success(req, res, token, 201)
-  } catch ({ message }) {
-    response.error(req, res, { message })
+  } catch ({ message, status }) {
+    response.error(req, res, { message }, status)
   }
 })
 
 router.get('/current_user', isAuthenticated, async (req, res) => {
   try {
     response.success(req, res, { user: req.current_user }, 201)
-  } catch ({ message }) {
-    response.error(req, res, { message })
+  } catch ({ message, status }) {
+    response.error(req, res, { message }, status)
   }
 })
 

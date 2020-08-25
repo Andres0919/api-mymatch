@@ -2,7 +2,7 @@ const Portfolio = require('../api/components/portfolios/store')
 
 const checkPortfolio = async (req, res, next) => {
   const { portfolio_token } = req.headers
-  console.log('req.portfolio :>> ', req.portfolio)
+
   if (!portfolio_token) {
     res.send({
       message:

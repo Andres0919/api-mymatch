@@ -12,7 +12,7 @@ const AuthController = {
         const isPasswordValid = compare(password, portfolio.password)
 
         if (!isPasswordValid || !isEmailValid) {
-          reject({ message: 'Email or password is not valid' })
+          reject({ message: 'Email or password is not valid', status: 401 })
         }
 
         const bodyToken = {
