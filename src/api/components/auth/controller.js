@@ -16,7 +16,7 @@ const AuthController = {
         }
 
         const bodyToken = {
-          user: portfolio.id,
+          portfolio: portfolio.id,
           expires_at: moment().add(1, 'days').unix(),
         }
 

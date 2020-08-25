@@ -15,9 +15,11 @@ router.post('/login', async (req, res) => {
   }
 })
 
-router.get('/current_user', isAuthenticated, async (req, res) => {
+router.get('/current_auth', isAuthenticated, async (req, res) => {
   try {
-    response.success(req, res, { user: req.current_user }, 201)
+    response.success(req, res, {
+      user: { author: req.portfolio.author, name: req.portfolio.name },
+    })
   } catch ({ message, status }) {
     response.error(req, res, { message }, status)
   }
