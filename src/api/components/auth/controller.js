@@ -8,27 +8,28 @@ const AuthController = {
     return new Promise(async (resolve, reject) => {
       try {
         const { email, password } = body
-        const isPasswordValid = await compare(password, user.password)
+        const isEmailValid = email === portfolio.email
+        const isPasswordValid = compare(password, portfolio.password)
 
-        if (!isPasswordValid) {
+        if (!isPasswordValid || !isEmailValid) {
           reject({ message: 'Email or password is not valid' })
         }
 
         const bodyToken = {
-          user: user.id,
+          user: portfolio.id,
           expires_at: moment().add(1, 'days').unix(),
         }
 
-        const access_token = await createToken(bodyToken)
-        const token = {
-          name: user.name,
+        const access_token = createToken(bodyToken)
+        const authInfo = {
+          name: portfolio.name,
           email,
           access_token,
           expires_at: moment
             .unix(bodyToken.expires_at)
             .format('YYYY-MM-DD HH:mm:ss'),
         }
-        resolve(token)
+        resolve(authInfo)
       } catch (error) {
         reject(error)
       }
