@@ -3,6 +3,16 @@ const Portfolio = require('./store')
 const { hash } = require('../../../utils/bcrypt')
 
 const PortfolioController = {
+  getAll: () => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        let sa = await Portfolio.list()
+        resolve(sa)
+      } catch (error) {
+        reject(error)
+      }
+    })
+  },
   create: ({ body }) => {
     let { name, author, email, password } = body
     return new Promise(async (resolve, reject) => {

@@ -1,53 +1,50 @@
 'use strict'
 const chalk = require('chalk')
 const { sequelize, DataTypes, Model } = require('../../../store')
-const Repository = require('../../../repository')
 
-class Portfolio extends Model {}
+class Profile extends Model {}
 
-Portfolio.init(
+Profile.init(
   {
+    // Model attributes are defined here
     id: {
       allowNull: false,
       primaryKey: true,
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
     },
-    name: {
+    firstName: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    author: {
+    lastName: {
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull defaults to true
     },
     email: {
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull defaults to true
     },
     password: {
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull defaults to true
     },
-    token: {
+    password: {
       type: DataTypes.STRING,
-      allowNull: false,
-    },
-    isDeleted: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false,
+      // allowNull defaults to true
     },
   },
   {
+    // Other model options go here
     sequelize, // We need to pass the connection instance
-    modelName: 'Portfolio', // We need to choose the model name
+    modelName: 'Profile', // We need to choose the model name
   }
 )
 
 let async = async function () {
   try {
-    await Portfolio.sync({ alter: true })
-    console.log(chalk.green('Portfolio was synchronized successfully.'))
+    await Profile.sync({ alter: true })
+    console.log(chalk.green('Profile was synchronized successfully.'))
   } catch (error) {
     console.log(chalk.red('[error]', error))
   }
@@ -55,4 +52,4 @@ let async = async function () {
 
 async()
 
-module.exports = Repository(Portfolio)
+module.exports = Profile
