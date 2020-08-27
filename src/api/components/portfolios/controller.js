@@ -6,7 +6,8 @@ const PortfolioController = {
   getAll: () => {
     return new Promise(async (resolve, reject) => {
       try {
-        let sa = await Portfolio.list()
+        console.log('Portfolio :>> ', Portfolio)
+        let sa = await Portfolio.getOne()
         resolve(sa)
       } catch (error) {
         reject(error)

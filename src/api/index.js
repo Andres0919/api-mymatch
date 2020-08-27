@@ -13,8 +13,9 @@ const app = express()
 
 app.use('/api/portfolio', portfolio)
 app.use(checkPortfolio)
+
 app.use('/api/auth', auth)
-app.use('/api/auth', profile)
+app.use('/api/profile', profile)
 
 app.use('/api-doc', swaggerUi.serve, swaggerUi.setup(swaggerDoc))
 

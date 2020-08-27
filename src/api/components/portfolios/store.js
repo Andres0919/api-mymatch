@@ -22,4 +22,5 @@ module.exports = {
   list,
   create,
   getByToken,
+  ...Portfolio,
 }

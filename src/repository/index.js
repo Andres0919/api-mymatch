@@ -1,9 +1,8 @@
 'use strict'
 const Repository = (Model) => {
-  class RepositoryBase extends Model {
-    static getOne() {
-      return this.findOne()
-    }
+  const RepositoryBase = Object.create(Model)
+  RepositoryBase.getOne = function () {
+    return Model.findOne()
   }
 
   return RepositoryBase
