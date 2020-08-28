@@ -1,6 +1,7 @@
 'use strict'
 const chalk = require('chalk')
 const { sequelize, DataTypes, Model } = require('../../../store')
+const Portfolio = require('../portfolios/model')
 const Repository = require('../../../repository')
 
 class Profile extends Model {}
@@ -14,25 +15,52 @@ Profile.init(
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
     },
+    imgUrl: {
+      type: DataTypes.STRING,
+    },
     firstName: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     lastName: {
       type: DataTypes.STRING,
-      // allowNull defaults to true
+      allowNull: false,
+    },
+    birthDate: {
+      type: DataTypes.DATE,
+      allowNull: false,
     },
     email: {
       type: DataTypes.STRING,
-      // allowNull defaults to true
+      allowNull: false,
     },
-    password: {
+    cellphone: {
       type: DataTypes.STRING,
-      // allowNull defaults to true
+      allowNull: false,
     },
-    password: {
+    cellphoneAlt: {
       type: DataTypes.STRING,
-      // allowNull defaults to true
+    },
+    jobTitle: {
+      type: DataTypes.STRING,
+    },
+    city: {
+      type: DataTypes.STRING,
+    },
+    country: {
+      type: DataTypes.STRING,
+    },
+    summary: {
+      type: DataTypes.STRING,
+    },
+    aboutMe: {
+      type: DataTypes.TEXT,
+    },
+    languages: {
+      type: DataTypes.STRING,
+    },
+    lookingForJob: {
+      type: DataTypes.BOOLEAN,
     },
   },
   {
@@ -40,6 +68,12 @@ Profile.init(
     modelName: 'Profile', // We need to choose the model name
   }
 )
+
+Profile.belongsTo(Portfolio, {
+  foreignKey: {
+    allowNull: false,
+  },
+})
 
 let async = async function () {
   try {
