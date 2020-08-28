@@ -1,16 +1,15 @@
 'use strict'
 const Portfolio = require('./model')
 
-const list = async () => {
-  const portfolio = await Portfolio.getOne()
-  return portfolio
+Portfolio.list = () => {
+  return Portfolio.getOne()
 }
 
-const create = (portfolio) => {
+Portfolio.create = (portfolio) => {
   return Portfolio.create(portfolio)
 }
 
-const getByToken = (token) => {
+Portfolio.getByToken = (token) => {
   return Portfolio.findOne({
     where: {
       token,
@@ -18,9 +17,4 @@ const getByToken = (token) => {
   })
 }
 
-module.exports = {
-  list,
-  create,
-  getByToken,
-  ...Portfolio,
-}
+module.exports = Portfolio
