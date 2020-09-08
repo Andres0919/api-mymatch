@@ -1,7 +1,7 @@
 'use strict'
-const { createToken } = require('../../../utils/jwt')
-const { compare } = require('../../../utils/bcrypt')
-const moment = require('../../../utils/moment')
+const { createToken } = require('../../utils/jwt')
+const { compare } = require('../../utils/bcrypt')
+const moment = require('../../utils/moment')
 
 const AuthController = {
   login: ({ portfolio, body }) => {
