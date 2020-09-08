@@ -20,23 +20,18 @@ Profile.init(
     },
     firstName: {
       type: DataTypes.STRING,
-      allowNull: false,
     },
     lastName: {
       type: DataTypes.STRING,
-      allowNull: false,
     },
     birthDate: {
       type: DataTypes.DATE,
-      allowNull: false,
     },
     email: {
       type: DataTypes.STRING,
-      allowNull: false,
     },
     cellphone: {
       type: DataTypes.STRING,
-      allowNull: false,
     },
     cellphoneAlt: {
       type: DataTypes.STRING,

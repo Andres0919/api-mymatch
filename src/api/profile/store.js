@@ -17,8 +17,25 @@ Profile.findById = (postId) => {
   })
 }
 
-Profile.create = (post) => {
-  return Profile.create(post)
+Profile.findByPortfolioId = function (portfolioId) {
+  return this.findOne({
+    where: {
+      PortfolioId: portfolioId,
+    },
+  })
+}
+
+Profile.updateOne = function (profileId, profile) {
+  return this.update(profile, {
+    where: {
+      id: profileId,
+    },
+    returning: true,
+  })
+}
+
+Profile.createOne = function (profile) {
+  return this.create(profile)
 }
 
 module.exports = Profile
