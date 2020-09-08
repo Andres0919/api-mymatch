@@ -2,6 +2,16 @@
 const Profile = require('./store')
 
 const ProfileController = {
+  getByPortfolioId: ({ portfolio }) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const profile = await Profile.findByPortfolioId(portfolio.id)
+        resolve({ profile })
+      } catch (error) {
+        reject(error)
+      }
+    })
+  },
   createOrUpdate: ({ portfolio, body }) => {
     const {
       imgUrl,
@@ -48,7 +58,7 @@ const ProfileController = {
           profile = await Profile.createOne(profile)
         }
 
-        resolve(profile)
+        resolve({ profile })
       } catch (error) {
         reject(error)
       }
