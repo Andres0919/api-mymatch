@@ -1,6 +1,6 @@
 'use strict'
 const express = require('express')
-const response = require('../../../network/response')
+const response = require('../../network/response')
 const PostController = require('./controller')
 
 const router = express.Router()

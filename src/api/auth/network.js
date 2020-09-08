@@ -1,7 +1,7 @@
 'use strict'
 const express = require('express')
-const response = require('../../../network/response')
-const { isAuthenticated } = require('../../../middlewares/auth')
+const response = require('../../network/response')
+const { isAuthenticated } = require('../../middlewares/auth')
 const AuthController = require('./controller')
 
 const router = express.Router()

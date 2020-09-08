@@ -6,7 +6,7 @@ const ProfileController = {
     const { name, author } = body
     return new Promise(async (resolve, reject) => {
       try {
-        await Profile.create({ name, author, token })
+        await Profile.create({ name, author })
         resolve()
       } catch (error) {
         reject(error)

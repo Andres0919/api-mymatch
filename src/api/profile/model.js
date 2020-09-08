@@ -1,8 +1,8 @@
 'use strict'
 const chalk = require('chalk')
-const { sequelize, DataTypes, Model } = require('../../../store')
+const { sequelize, DataTypes, Model } = require('../../store')
 const Portfolio = require('../portfolios/model')
-const Repository = require('../../../repository')
+const Repository = require('../../repository')
 
 class Profile extends Model {}
 

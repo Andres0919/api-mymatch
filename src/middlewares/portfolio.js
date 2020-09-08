@@ -1,5 +1,5 @@
 const response = require('../network/response')
-const Portfolio = require('../api/components/portfolios/store')
+const Portfolio = require('../api/portfolios/store')
 
 const checkPortfolio = async (req, res, next) => {
   const { portfolio_token } = req.headers

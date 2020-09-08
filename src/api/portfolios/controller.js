@@ -1,6 +1,6 @@
 'use strict'
 const Portfolio = require('./store')
-const { hash } = require('../../../utils/bcrypt')
+const { hash } = require('../../utils/bcrypt')
 
 const PortfolioController = {
   getAll: () => {
