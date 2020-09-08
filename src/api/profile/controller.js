@@ -2,7 +2,7 @@
 const Profile = require('./store')
 
 const ProfileController = {
-  create: ({ body }) => {
+  createOrUpdate: ({ body }) => {
     const { name, author } = body
     return new Promise(async (resolve, reject) => {
       try {

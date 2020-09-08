@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  ProfileController.create(req)
+  ProfileController.createOrUpdate(req)
   response.success(req, res, 'Todo correcto', 200)
 })
 

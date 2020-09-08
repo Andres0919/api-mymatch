@@ -9,10 +9,11 @@ Portfolio.create = (portfolio) => {
   return Portfolio.create(portfolio)
 }
 
-Portfolio.getByToken = (token) => {
-  return Portfolio.findOne({
+Portfolio.getByToken = function (token) {
+  return this.findOne({
     where: {
       token,
+      isDeleted: false,
     },
   })
 }

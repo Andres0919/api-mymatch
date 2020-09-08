@@ -1,6 +1,7 @@
 'use strict'
 const Repository = (Model) => {
-  const RepositoryBase = Object.create(Model)
+  class RepositoryBase extends Model {}
+
   RepositoryBase.getOne = function () {
     return Model.findOne()
   }
