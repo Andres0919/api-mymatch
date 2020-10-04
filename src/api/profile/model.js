@@ -1,7 +1,7 @@
 'use strict'
 const chalk = require('chalk')
 const { sequelize, DataTypes, Model } = require('../../store')
-const Portfolio = require('../portfolios/model')
+const User = require('../users/model')
 const Repository = require('../../repository')
 
 class Profile extends Model {}
@@ -64,7 +64,7 @@ Profile.init(
   }
 )
 
-Profile.belongsTo(Portfolio, {
+Profile.belongsTo(User, {
   foreignKey: {
     allowNull: false,
   },

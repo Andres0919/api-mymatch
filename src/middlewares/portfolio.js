@@ -1,5 +1,5 @@
 const response = require('../network/response')
-const Portfolio = require('../api/portfolios/store')
+const User = require('../api/users/store')
 
 const checkPortfolio = async (req, res, next) => {
   try {
@@ -17,7 +17,7 @@ const checkPortfolio = async (req, res, next) => {
       )
     }
 
-    const portfolio = await Portfolio.getByToken(portfolio_token)
+    const portfolio = await User.getByToken(portfolio_token)
     if (!portfolio) {
       return response.error(
         req,

@@ -2,7 +2,7 @@
 const express = require('express')
 const swaggerUi = require('swagger-ui-express')
 
-const portfolio = require('./portfolios/network')
+const users = require('./users/network')
 const auth = require('./auth/network')
 const profile = require('./profile/network')
 
@@ -11,7 +11,7 @@ const swaggerDoc = require('./swagger.json')
 
 const app = express()
 
-app.use('/api/portfolio', portfolio)
+app.use('/api/users', users)
 app.use(checkPortfolio)
 
 app.use('/api/auth', auth)
