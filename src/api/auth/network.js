@@ -9,7 +9,7 @@ const router = express.Router()
 router.post('/login', async (req, res) => {
   try {
     let token = await AuthController.login(req)
-    response.success(req, res, token, 201)
+    response.success(req, res, token, 200)
   } catch ({ message, status }) {
     response.error(req, res, { message }, status)
   }
