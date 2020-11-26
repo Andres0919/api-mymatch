@@ -9,8 +9,8 @@ router.get('/', (req, res) => {
   response.success(req, res, 'Todo correcto', 200)
 })
 
-router.post('/', (req, res) => {
-  PostController.create(req)
+router.post('/', async (req, res) => {
+  await PostController.create(req)
   response.success(req, res, 'Todo correcto', 200)
 })
 

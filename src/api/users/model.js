@@ -32,15 +32,17 @@ User.init(
       // allowNull defaults to true
     },
     token: {
-      type: DataTypes.UUID,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     isVerified: {
       type: DataTypes.BOOLEAN,
+      defaultValue: false,
       // allowNull defaults to true
     },
     isDelete: {
       type: DataTypes.BOOLEAN,
+      defaultValue: false,
       // allowNull defaults to true
     },
   },

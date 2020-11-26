@@ -1,12 +1,15 @@
 'use strict'
-const Post = require('./store')
+const { hash } = require('../../utils/bcrypt')
+const User = require('./store')
 
-const PostController = {
+const UserController = {
   create: ({ body }) => {
-    const { name, author } = body
+    let { name, author, email, password } = body
+    password = hash(password)
+    const token = hash(`${name}${author}`)
     return new Promise(async (resolve, reject) => {
       try {
-        await Post.create({ name, author, token })
+        await User.create({ name, author, token, email, password})
         resolve()
       } catch (error) {
         reject(error)
@@ -15,4 +18,4 @@ const PostController = {
   },
 }
 
-module.exports = PostController
+module.exports = UserController

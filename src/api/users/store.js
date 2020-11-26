@@ -1,7 +1,7 @@
 'use strict'
 const Post = require('./model')
 
-Post.all = (portfolioId) => {
+const all = (portfolioId) => {
   return Post.findAll({
     where: {
       PortfolioId: portfolioId,
@@ -9,7 +9,7 @@ Post.all = (portfolioId) => {
   })
 }
 
-Post.findById = (postId) => {
+const findById = (postId) => {
   return Post.findOne({
     where: {
       id: postId,
@@ -17,8 +17,13 @@ Post.findById = (postId) => {
   })
 }
 
-Post.create = (post) => {
+const create = (post) => {
   return Post.create(post)
 }
 
-module.exports = Post
+module.exports = {
+  ...Post,
+  all,
+  findById,
+  create
+}
