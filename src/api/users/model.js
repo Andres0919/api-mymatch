@@ -11,12 +11,22 @@ User.init(
     id: {
       allowNull: false,
       primaryKey: true,
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+    },
+    uid: {
+      allowNull: false,
+      primaryKey: true,
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
     },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    lastName: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
     email: {
       type: DataTypes.STRING,
