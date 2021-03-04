@@ -20,11 +20,9 @@ const init = async () => {
 
   app.listen(API_PORT, () => {
     console.log(`${chalk.green('/////////////////////////////////////')}\n\n`)
-    console.log(
-      `     ${chalk.green('Api listening in port')}, ${chalk.yellow(
-        API_PORT
-      )}\n\n`
-    )
+    console.log(`     `)
+    console.log(`${chalk.green('Api listening in port')}, `)
+    console.log(`${chalk.yellow(API_PORT)}\n\n`)
     console.log(`${chalk.green('/////////////////////////////////////')}`)
   })
 }
