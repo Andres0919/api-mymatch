@@ -1,19 +1,29 @@
 'use strict'
 const swaggerUi = require('swagger-ui-express')
+const { stream } = require('fast-glob')
 
-const users = require('./users/network')
-const auth = require('./auth/network')
-const profile = require('./profiles/network')
-const opinion = require('./opinions/network')
+const { executeRoute } = require('../utils/executeRoute')
+
 const swaggerDoc = require('./swagger.json')
+const globalPrefix = '/api'
+const api = async (app) => {
+  const files = stream(['src/api/**/network.js'], { dot: true })
+  for await (const file of files) {
+    const fileName = file.replace('src/api', '.')
+    const routeConfig = require(`${fileName}`)
 
-const api = (app) => {
-  app.use('/api/users', users)
-  // app.use(checkPortfolio)
+    if (!routeConfig.routes || !routeConfig.moduleName) {
+      continue
+    }
 
-  app.use('/api/auth', auth)
-  app.use('/api/profiles', profile)
-  app.use('/api/opinions', opinion)
+    for (const route of routeConfig.routes) {
+      const routeMethod = route.method || 'get'
+      const routeFullPath = `${globalPrefix}/${routeConfig.moduleName}${route.path}`
+      app[routeMethod](routeFullPath, (req, res) =>
+        executeRoute(req, res, route.options)
+      )
+    }
+  }
 
   app.use('/api-doc', swaggerUi.serve, swaggerUi.setup(swaggerDoc))
 }

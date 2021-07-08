@@ -14,4 +14,4 @@ router.post('/', (req, res) => {
   response.success(req, res, 'Todo correcto', 200)
 })
 
-module.exports = router
+module.exports = {}
