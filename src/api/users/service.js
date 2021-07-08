@@ -1,7 +1,7 @@
 'use strict'
 const executeSafe = require('../../utils/executeSafe')
 const { hash } = require('../../utils/bcrypt')
-const Store = require('./store')
+const Store = require('./cache')
 
 const UserService = {
   createUser({ name, author, email, password }) {
@@ -13,8 +13,9 @@ const UserService = {
     })
   },
   listUsers() {
-    return executeSafe(this, () => {
-      return { a: this.name }
+    return executeSafe(this, async () => {
+      const users = await Store.listUsers()
+      return users
     })
   },
 }

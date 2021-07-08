@@ -1,29 +1,10 @@
 'use strict'
-const Post = require('./model')
+const { User } = require('../../utils/repository')
 
-const all = (portfolioId) => {
-  return Post.findAll({
-    where: {
-      PortfolioId: portfolioId,
-    },
-  })
-}
-
-const findById = (postId) => {
-  return Post.findOne({
-    where: {
-      id: postId,
-    },
-  })
-}
-
-const create = (post) => {
-  return Post.create(post)
+const listUsers = () => {
+  return User.list()
 }
 
 module.exports = {
-  ...Post,
-  all,
-  findById,
-  create
+  listUsers,
 }

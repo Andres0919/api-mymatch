@@ -4,4 +4,5 @@ module.exports = {
   API_PORT: process.env.PORT || 5000,
   DB_URI: process.env.DATABASE_URL || '',
   TOKEN_KEY: process.env.TOKEN_KEY || 'token_secret',
+  CACHE_EXPIRE_AT: process.env.CACHE_EXPIRE_AT || 10,
 }

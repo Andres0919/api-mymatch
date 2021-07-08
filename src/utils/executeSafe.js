@@ -8,18 +8,16 @@ const makeSafe = function (context, fn) {
   }
 }
 
-const executeSafe = function (context, fn) {
-  return new Promise(async (resolve, reject) => {
-    try {
-      const fnSafe = makeSafe(context, fn)
-      const result = await fnSafe()
-      resolve(result)
-    } catch (error) {
-      const message = error.message
-      const status = error.output ? error.output.statusCode : error.status
-      reject({ status, message })
-    }
-  })
+const executeSafe = async function (context, fn) {
+  try {
+    const fnSafe = makeSafe(context, fn)
+    const result = await fnSafe()
+    return Promise.resolve(result)
+  } catch (error) {
+    const message = error.message
+    const status = error.output ? error.output.statusCode : error.status
+    return Promise.reject({ status, message })
+  }
 }
 
 module.exports = executeSafe
