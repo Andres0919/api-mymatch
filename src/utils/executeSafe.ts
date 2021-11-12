@@ -1,4 +1,4 @@
-const makeSafe = function (context, fn) {
+const makeSafe = function <C>(context: C, fn: Function) {
   return function () {
     try {
       return fn.apply(context, arguments)
@@ -8,7 +8,7 @@ const makeSafe = function (context, fn) {
   }
 }
 
-const executeSafe = async function (context, fn) {
+const executeSafe = async function <C>(context: C, fn: Function) {
   try {
     const fnSafe = makeSafe(context, fn)
     const result = await fnSafe()
@@ -20,4 +20,4 @@ const executeSafe = async function (context, fn) {
   }
 }
 
-module.exports = executeSafe
+export default executeSafe

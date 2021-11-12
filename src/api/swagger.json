@@ -121,6 +121,19 @@
             "description": "The password for login in clear text",
             "required": true,
             "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string" },
+                "email": { "type": "string" },
+                "password": { "type": "string" },
+                "author": { "type": "string" }
+              }
+            }
           }
         ],
         "responses": {

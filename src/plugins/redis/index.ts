@@ -1,6 +1,6 @@
 'use strict'
-const redis = require('redis')
-const { CACHE_EXPIRE_AT } = require('../../config')
+import redis from 'redis'
+import { CACHE_EXPIRE_AT } from '../../config'
 
 const client = redis.createClient()
 
@@ -8,7 +8,7 @@ client.on('error', function (error) {
   console.error(error)
 })
 
-const get = (keyword) => {
+export const get = (keyword: string) => {
   return new Promise((resolve, reject) => {
     client.get(keyword, (err, data) => {
       if (err) {
@@ -20,16 +20,14 @@ const get = (keyword) => {
   })
 }
 
-const set = (keyword, value, expiredAt = CACHE_EXPIRE_AT) => {
-  return client.setex(keyword, expiredAt, value)
+export const set = (
+  keyword: string,
+  value: any,
+  expiredAt = CACHE_EXPIRE_AT
+) => {
+  return client.setex(keyword, Number(expiredAt), value)
 }
 
-const remove = (keyword) => {
+export const remove = (keyword: string) => {
   return client.del(keyword)
-}
-
-module.exports = {
-  get,
-  set,
-  remove,
 }
