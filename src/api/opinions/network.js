@@ -6,8 +6,8 @@ const OpinionController = require('./controller')
 const router = express.Router()
 
 router.get('/', async (req, res) => {
-  const opions = await OpinionController.list()
-  response.success(req, res, opions, 200)
+  const opinions = await OpinionController.list()
+  response.success(req, res, opinions, 200)
 })
 
 router.post('/', async (req, res) => {
@@ -15,4 +15,4 @@ router.post('/', async (req, res) => {
   response.success(req, res, 'Todo correcto', 200)
 })
 
-module.exports = router
+module.exports = {}

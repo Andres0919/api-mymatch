@@ -25,4 +25,4 @@ router.get('/current_auth', isAuthenticated, async (req, res) => {
   }
 })
 
-module.exports = router
+module.exports = {}
