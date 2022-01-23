@@ -1,8 +1,11 @@
 'use strict'
 
 import { DataTypes, Sequelize } from 'sequelize/types'
-import { IUserRepository, User as UserModel } from '../../api/users/repository'
-import { NODE_ENV } from '../../config'
+import {
+  IUserRepository,
+  User as UserModel,
+} from '../../../api/users/repository'
+import { NODE_ENV } from '../../../config'
 const chalk = require('chalk')
 
 const UserModel = (

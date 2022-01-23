@@ -1,5 +1,4 @@
 'use strict'
-
 import RouteConfig from '../../Interfaces/RouteConfig'
 import { list, create } from './controller'
 import { addUser, replyUser } from './schema'

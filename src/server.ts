@@ -1,44 +1,31 @@
 'use strict'
-import express, { Application } from 'express'
-import cors from 'cors'
-import helmet from 'helmet'
-import morgan from 'morgan'
-import pino from 'express-pino-logger'
-
+import { HttpFramework } from './utils/core'
 import { API_PORT } from './config'
-import Api from './api'
+import { getApiRoutes } from './api'
+// import Api from './api'
 
 class Server {
-  app: Application
+  app: HttpFramework
 
   constructor() {
-    this.app = express()
+    this.app = HttpFramework.app()
+    this.bootstrap()
+  }
 
-    this.plugins()
+  private async routes() {
+    const routes = await getApiRoutes()
+    this.app.initHttpRoutes(routes, {
+      globalPrefix: 'api',
+    })
+    // const api = new Api(this.app)
+    // api.initRoutes()
+  }
 
+  private bootstrap() {
     this.routes()
   }
 
-  private plugins() {
-    this.app.use(cors())
-    this.app.use(helmet())
-    this.app.use(morgan(':method :url :status :date'))
-    this.app.use(express.urlencoded({ extended: false }))
-    this.app.use(express.json({ limit: '13mb', type: 'application/json' }))
-    this.app.use(
-      pino({
-        prettyPrint: true,
-        autoLogging: false,
-      })
-    )
-  }
-
-  private routes() {
-    const api = new Api(this.app)
-    api.initRoutes()
-  }
-
-  listen() {
+  init() {
     this.app.listen(API_PORT, () => {
       console.log(`Api listening in port ${API_PORT}`)
     })

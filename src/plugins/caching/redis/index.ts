@@ -1,6 +1,6 @@
 'use strict'
 import redis from 'redis'
-import { CACHE_EXPIRE_AT } from '../../config'
+import { CACHE_EXPIRE_AT } from '../../../config'
 
 const client = redis.createClient()
 

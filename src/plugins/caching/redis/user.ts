@@ -1,6 +1,6 @@
 import { get, remove, set } from '.'
-import { IUserRepository, User } from '../../api/users/repository'
-import executeSafe from '../../utils/executeSafe'
+import { IUserRepository, User } from '../../../api/users/repository'
+import executeSafe from '../../../utils/executeSafe'
 
 class UserCache implements IUserRepository {
   constructor(private userRepository: IUserRepository) {}

@@ -20,7 +20,7 @@ export interface RouteOptions {
   middleware?: Function
 }
 
-interface Schema {
+export interface Schema {
   params?: SchemaDetail
   body?: SchemaDetail
   query?: SchemaDetail

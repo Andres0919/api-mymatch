@@ -1,0 +1,12 @@
+version: '3'
+services:
+  api:
+    build: .
+    ports:
+      - '5000:5000'
+    volumes:
+      - .:/usr/src/app
+    environment:
+      - NODE_ENV=development
+      - TOKEN_KEY=secret_key
+      - PORT=5000

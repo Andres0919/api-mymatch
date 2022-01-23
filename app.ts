@@ -7,6 +7,6 @@ dotenv.config({ path: `${dirname}/.env.${process.env.NODE_ENV}` })
 import Server from './src/server'
 
 const server = new Server()
-server.listen()
+server.init()
 
 export default server.app
