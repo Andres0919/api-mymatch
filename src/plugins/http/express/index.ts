@@ -1,4 +1,5 @@
 'use strict'
+import { IHttpFramework } from '../../../Interfaces/FrameworkApi'
 import express, { Application, Request, Response } from 'express'
 import pino from 'express-pino-logger'
 import cors from 'cors'
@@ -15,18 +16,12 @@ import {
   responseSuccess,
 } from '../../../utils/response'
 
-export default class ExpressFramework {
-  private static _instance: ExpressFramework
+export default class ExpressFramework implements IHttpFramework {
   private app: Application
 
   constructor() {
     this.app = express()
     this.initPlugins()
-    if (ExpressFramework._instance) {
-      throw new Error('Error: instantiation failed')
-    }
-
-    ExpressFramework._instance = this
   }
 
   private initPlugins() {
@@ -116,28 +111,29 @@ export default class ExpressFramework {
     }
   }
 
-  public static app() {
-    return ExpressFramework._instance || new ExpressFramework()
-  }
-
   public initHttpRoutes(
     routeList: IRouteConfig[],
     { globalPrefix }: { globalPrefix: string }
-  ) {
+  ) : void {
     for (const routeConfig of routeList) {
       for (const route of routeConfig.routes) {
         const routeMethod = route.method || 'get'
         const routeFullPath = `/${globalPrefix}/${routeConfig.moduleName}${route.path}`
         this.app[routeMethod](
           routeFullPath,
-          (req: Request, res: Response): Promise<unknown> =>
-            this.executeRoute(req, res, route.options)
+          async (req: Request, res: Response): Promise<unknown> =>
+            await this.executeRoute(req, res, route.options)
         )
       }
     }
   }
 
   listen(port: number | string, callback?: () => void): void {
-    this.app.listen(port, callback)
+    this.app.listen(port, () : void => {
+      console.log('Express')
+      if(callback) {
+        callback()
+      }
+    })
   }
 }

@@ -1,14 +1,13 @@
 'use strict'
-import { HttpFramework } from './utils/core'
+import { IHttpFramework } from './Interfaces/FrameworkApi'
 import { API_PORT } from './config'
 import { getApiRoutes } from './api'
-// import Api from './api'
 
 class Server {
-  app: HttpFramework
+  app: IHttpFramework
 
-  constructor() {
-    this.app = HttpFramework.app()
+  constructor(httpFramework: IHttpFramework) {
+    this.app = httpFramework
     this.bootstrap()
   }
 
@@ -21,8 +20,9 @@ class Server {
     // api.initRoutes()
   }
 
-  private bootstrap() {
-    this.routes()
+  private async bootstrap() {
+    await this.routes()
+    this.init()
   }
 
   init() {
